@@ -5,9 +5,11 @@ const startNotes = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G',
 const startNoteSelector = document.querySelector('#start-note');
 const octaveSelector = document.querySelector('#octave');
 const buttons = document.querySelector('.buttons');
+const intervalsInChord = document.querySelector('.intervals-in-chord');
 
 let selectedStartNote;
 let selectedOctave;
+let selectedChord;
 
 const chordEntries = Tonal.ChordType.all();
 
@@ -52,8 +54,13 @@ const app = {
       if (event.target.classList.contains('buttons')) {
         return;
       }
-      console.log(event.target);
+      selectedChord = event.target.innerText;
+      this.displayChordInfo(selectedChord);
     });
+  },
+  displayChordInfo(selectedChord) {
+    let chordIntervals = Tonal.Chord.getChord(selectedChord).intervals;
+    intervalsInChord.innerText = chordIntervals.join(' - ');
   },
   createElement(elementName, content) {
     let element = document.createElement(elementName);
