@@ -104,8 +104,13 @@ body {
 
 .chord-notes {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   font-size: 1.5em;
+}
+
+.chord-notes p {
+  margin: 10px 0;
 }
 
 .buttons {
