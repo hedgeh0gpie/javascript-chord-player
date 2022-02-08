@@ -5,6 +5,10 @@ const startNotes = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G',
 const startNoteSelector = document.querySelector('#start-note');
 const octaveSelector = document.querySelector('#octave');
 const buttons = document.querySelector('.buttons');
+
+let selectedStartNote;
+let selectedOctave;
+
 const chordEntries = Tonal.ChordType.all();
 
 const app = {
@@ -12,6 +16,7 @@ const app = {
     this.setupStartNotes();
     this.setupOctaves();
     this.setupButtons();
+    this.setupEventListeners();
   },
   setupStartNotes() {
     startNotes.forEach(noteName =>{
@@ -32,6 +37,22 @@ const app = {
     chordNames.forEach(chordName => {
       let chordButton = this.createElement('button', chordName);
       buttons.appendChild(chordButton);
+    });
+  },
+  setupEventListeners() {
+    startNoteSelector.addEventListener('change', () => {
+      selectedStartNote = startNoteSelector.value;
+      console.log(selectedStartNote);
+    });
+    octaveSelector.addEventListener('change', () => {
+      selectedOctave = octaveSelector.value;
+      console.log(selectedOctave);
+    });
+    buttons.addEventListener('click', (event) => {
+      if (event.target.classList.contains('buttons')) {
+        return;
+      }
+      console.log(event.target);
     });
   },
   createElement(elementName, content) {
