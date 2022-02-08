@@ -87,6 +87,44 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+  font-family: Lato, sans-serif;
+  color: #FFF;
+  background: #242424;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.control select {
+  margin: 0 10px;
+}
+
+.chord-notes {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.buttons button {
+  flex-grow: 1;
+  min-width: 200px;
+  height: 50px;
+  font-size: 1em;
+  background: teal;
+  border: none;
+  color: #FFF;
+  margin: 10px;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
