@@ -120,7 +120,7 @@ body {
 }
 
 .buttons button {
-  flex-grow: 1;
+  /*flex-grow: 1;*/
   min-width: 200px;
   height: 50px;
   font-size: 1em;

@@ -4,11 +4,14 @@ const startNotes = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G',
 
 const startNoteSelector = document.querySelector('#start-note');
 const octaveSelector = document.querySelector('#octave');
+const buttons = document.querySelector('.buttons');
+const chordEntries = Tonal.ChordType.all();
 
 const app = {
   init() {
     this.setupStartNotes();
     this.setupOctaves();
+    this.setupButtons();
   },
   setupStartNotes() {
     startNotes.forEach(noteName =>{
@@ -22,6 +25,15 @@ const app = {
       octaveSelector.appendChild(octaveNumber);
     }
   },
+  setupButtons() {
+    const chordNames = chordEntries.map(entry => {
+      return entry.aliases[0];
+    });
+    chordNames.forEach(chordName => {
+      let chordButton = this.createElement('button', chordName);
+      buttons.appendChild(chordButton);
+    });
+  },
   createElement(elementName, content) {
     let element = document.createElement(elementName);
     element.innerHTML = content;
@@ -30,4 +42,5 @@ const app = {
 };
 
 app.init();
+
 
