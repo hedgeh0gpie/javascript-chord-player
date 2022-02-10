@@ -6,9 +6,10 @@ const startNoteSelector = document.querySelector('#start-note');
 const octaveSelector = document.querySelector('#octave');
 const buttons = document.querySelector('.buttons');
 const intervalsInChord = document.querySelector('.intervals-in-chord');
+const notesInChord = document.querySelector('.notes-in-chord');
 
-let selectedStartNote;
-let selectedOctave;
+let selectedStartNote = 'C';
+let selectedOctave = '1';
 let selectedChord;
 
 const chordEntries = Tonal.ChordType.all();
@@ -61,6 +62,15 @@ const app = {
   displayChordInfo(selectedChord) {
     let chordIntervals = Tonal.Chord.getChord(selectedChord).intervals;
     intervalsInChord.innerText = chordIntervals.join(' - ');
+
+    const startNoteWithOctave = selectedStartNote + selectedOctave;
+    let chordNotes = chordIntervals.map(val => {
+      return Tonal.transpose(startNoteWithOctave, val);
+    });
+    notesInChord.innerText = chordNotes.join(' - ');
+
+    console.log(chordNotes);
+    console.log(startNoteWithOctave);
   },
   createElement(elementName, content) {
     let element = document.createElement(elementName);
