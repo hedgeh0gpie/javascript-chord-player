@@ -14,6 +14,17 @@ let selectedChord;
 
 const chordEntries = Tonal.ChordType.all();
 
+const sound = new Howl({
+  src: ['assets/pianosprite.mp3'],
+  onload() {
+    console.log('Sound file has been loaded. Do something here!');
+    soundEngine.init();
+  },
+  onloaderror(e) {
+    console.log('Error', e, msg);
+  }
+});
+
 const app = {
   init() {
     this.setupStartNotes();
@@ -78,6 +89,13 @@ const app = {
     return element;
   }
 };
+
+const soundEngine = {
+  init() {
+    console.log('It works');
+
+  }
+}
 
 app.init();
 
