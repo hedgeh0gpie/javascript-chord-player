@@ -39,7 +39,7 @@ const app = {
     });
   },
   setupOctaves() {
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 4; i++) {
       let octaveNumber = this.createElement('option', i);
       octaveSelector.appendChild(octaveNumber);
     }
@@ -79,9 +79,7 @@ const app = {
       return Tonal.transpose(startNoteWithOctave, val);
     });
     notesInChord.innerText = chordNotes.join(' - ');
-
-    console.log(chordNotes);
-    console.log(startNoteWithOctave);
+    soundEngine.play(chordNotes);
   },
   createElement(elementName, content) {
     let element = document.createElement(elementName);
@@ -99,7 +97,18 @@ const soundEngine = {
       sound['_sprite'][i] = [timeIndex, lengthOfNote];
       timeIndex += lengthOfNote;
     }
-    sound.play('');
+  },
+  play(soundSequence) {
+
+    const soundSequenceMidiNumbers = soundSequence.map(noteName => {
+      return Tonal.note(noteName).midi;
+    });
+
+    sound.volume(0.3);
+
+    soundSequenceMidiNumbers.forEach(noteMidiNumber => {
+      sound.play(noteMidiNumber.toString());
+    });
   }
 
 }
