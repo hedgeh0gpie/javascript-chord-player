@@ -92,8 +92,14 @@ const app = {
 
 const soundEngine = {
   init() {
-    console.log('It works');
+    const lengthOfNote = 2400;
+    let timeIndex = 0;
 
+    for (let i = 24; i <= 96; i++) {
+      sound['_sprite'][i] = [timeIndex, lengthOfNote];
+      timeIndex += lengthOfNote;
+    }
+    sound.play('');
   }
 }
 
