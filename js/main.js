@@ -67,10 +67,10 @@ const app = {
         return;
       }
       selectedChord = event.target.innerText;
-      this.displayChordInfo(selectedChord);
+      this.displayAndPlayChord(selectedChord);
     });
   },
-  displayChordInfo(selectedChord) {
+  displayAndPlayChord(selectedChord) {
     let chordIntervals = Tonal.Chord.getChord(selectedChord).intervals;
     intervalsInChord.innerText = chordIntervals.join(' - ');
 
@@ -101,6 +101,7 @@ const soundEngine = {
     }
     sound.play('');
   }
+
 }
 
 app.init();
